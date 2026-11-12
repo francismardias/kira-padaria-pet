@@ -7,7 +7,7 @@
 <meta name="description" content="Petiscos naturais, bolos e cupcakes personalizados e kits de aniversário para pets. Kira Padaria Pet, Franca-SP. Encomende pelo WhatsApp (16) 99129-5907.">
 <meta property="og:title" content="Kira Padaria Pet | Alimentação Natural">
 <meta property="og:description" content="Petiscos naturais, bolos e cupcakes personalizados para o seu pet. Franca-SP.">
-<meta property="og:image" content="assets/01-capa.jpg">
+<meta property="og:image" content="https://kirapadariapet.com.br/assets/01-capa.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23FFC93C' stroke='%235B2A86' stroke-width='6'/%3E%3Ctext x='50' y='66' font-size='50' text-anchor='middle'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
 </head>
@@ -148,6 +148,19 @@ h2{font-size:32px;color:var(--vd);margin:6px 0 10px}
 footer{background:var(--vd);color:#e9dff3;padding:32px 0;font-size:14px;text-align:center}
 footer a{color:var(--y);font-weight:700}
 .float{position:fixed;right:18px;bottom:18px;z-index:20;background:#25D366;color:#fff;font-weight:700;padding:13px 20px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);font-size:15px}
+/* Botões interativos (WhatsApp, Faça seu pedido, Fale conosco) */
+@keyframes kiraRing{0%{box-shadow:0 0 0 0 rgba(255,255,255,.85),0 0 0 0 rgba(255,201,60,.7)}70%{box-shadow:0 0 0 16px rgba(255,255,255,0),0 0 0 28px rgba(255,201,60,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0),0 0 0 0 rgba(255,201,60,0)}}
+@keyframes kiraShine{0%{transform:translateX(-130%) skewX(-20deg)}55%,100%{transform:translateX(330%) skewX(-20deg)}}
+@keyframes kiraFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes kiraWiggle{0%,86%,100%{transform:rotate(0)}89%{transform:rotate(-6deg)}92%{transform:rotate(6deg)}95%{transform:rotate(-4deg)}98%{transform:rotate(3deg)}}
+a.hot[href*="wa.me"]{overflow:hidden;cursor:pointer;animation:kiraRing 2.2s ease-out infinite;transition:transform .25s cubic-bezier(.3,1.6,.5,1),background .25s,filter .25s}
+a.hot[href*="wa.me"]::after{content:"";position:absolute;top:0;left:0;width:30%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:kiraShine 3.6s ease-in-out infinite;pointer-events:none}
+a.hot[href*="wa.me"]:hover{transform:scale(1.07);background:rgba(255,255,255,.18);filter:brightness(1.08) saturate(1.1);animation-play-state:paused}
+a.hot[href*="wa.me"]:active{transform:scale(.96)}
+.float{animation:kiraRing 2.2s ease-out infinite,kiraWiggle 4s ease-in-out infinite;transition:transform .25s cubic-bezier(.3,1.6,.5,1),filter .25s;display:inline-flex;align-items:center;gap:6px}
+.float:hover{transform:scale(1.1) translateY(-3px);filter:brightness(1.08);animation-play-state:paused}
+.float:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){a.hot[href*="wa.me"],a.hot[href*="wa.me"]::after,.float{animation:none}}
 @media(max-width:820px){.hero .wrap,.two,.contact{grid-template-columns:1fr}h1{font-size:34px}nav a.h{display:none}.seal{width:230px;height:230px}.seal b{font-size:40px}.seal em{font-size:46px}}
 </style>
 
@@ -196,5 +209,65 @@ PARCEIROS.forEach(function(p,i){
 
 <a class="float" href="https://wa.me/5516991295907?text=Ol%C3%A1%2C%20Kira!%20Vim%20pelo%20site." target="_blank" rel="noopener">💬 WhatsApp</a>
 
+<style>
+/* Patinhas caminhando entre as seções */
+.pawrow{position:relative;height:clamp(54px,7vw,96px);background:linear-gradient(#fff,#FFF4CF 50%,#fff);overflow:hidden;line-height:0}
+.pawrow svg{position:absolute;width:clamp(20px,2.6vw,36px);height:auto;opacity:0;transform:scale(.3) rotate(90deg)}
+.pawrow.go svg{animation:pawStep .6s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes pawStep{0%{opacity:0;transform:scale(.3) rotate(90deg)}100%{opacity:.9;transform:scale(1) rotate(90deg)}}
+.pawrow.go svg.fade{animation:pawStep .6s cubic-bezier(.3,1.5,.5,1) forwards,pawFade 2.4s ease-in 2.2s forwards}
+@keyframes pawFade{to{opacity:.25}}
+/* Elementos flutuantes (parallax) */
+#kfloat{position:fixed;inset:0;pointer-events:none;z-index:8;overflow:hidden}
+#kfloat i{position:absolute;font-style:normal;will-change:transform;line-height:1;user-select:none}
+#kfloat i b{display:block;font-weight:400;animation:kSway 5s ease-in-out infinite alternate}
+@keyframes kSway{from{transform:translateX(-9px) rotate(-12deg)}to{transform:translateX(9px) rotate(12deg)}}
+@media (max-width:700px){#kfloat i:nth-child(even){display:none}}
+@media (prefers-reduced-motion:reduce){#kfloat{display:none}.pawrow svg{opacity:.8;transform:rotate(90deg);animation:none!important}}
+</style>
+<script>
+(function(){
+var PAW='<svg viewBox="0 0 64 64" aria-hidden="true"><g fill="COR"><ellipse cx="32" cy="42" rx="15" ry="12"/><ellipse cx="13" cy="28" rx="6.5" ry="8.5"/><ellipse cx="25" cy="16" rx="6.5" ry="9"/><ellipse cx="39" cy="16" rx="6.5" ry="9"/><ellipse cx="51" cy="28" rx="6.5" ry="8.5"/></g></svg>';
+var cores=['#E8337A','#5B2A86','#FFC93C'];
+/* divisórias com patinhas */
+var secs=document.querySelectorAll('section.imgsec');
+var rows=[];
+for(var s=1;s<secs.length;s++){
+  var d=document.createElement('div');d.className='pawrow';d.setAttribute('aria-hidden','true');
+  var h='',n=11;
+  for(var k=0;k<n;k++){
+    var left=4+k*(90/(n-1)),top=(k%2?58:22);
+    h+=PAW.replace('COR',cores[k%3]).replace('<svg','<svg style="left:'+left+'%;top:'+top+'%;animation-delay:'+(k*0.22)+'s"');
+  }
+  d.innerHTML=h;secs[s].parentNode.insertBefore(d,secs[s]);rows.push(d);
+}
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('go');io.unobserve(e.target);}});},{threshold:.5});
+  rows.forEach(function(r){io.observe(r);});
+}else{rows.forEach(function(r){r.classList.add('go');});}
+/* elementos flutuantes nas laterais */
+var box=document.createElement('div');box.id='kfloat';box.setAttribute('aria-hidden','true');
+var itens=[['❤',3,10,22,'#E8337A',.45],['🐾',92,28,26,'#5B2A86',.35],['❤',6,48,16,'#FFC93C',.6],['🐾',94,62,20,'#E8337A',.4],['❤',90,84,24,'#E8337A',.4],['🐾',2,78,24,'#5B2A86',.35],['❤',95,6,14,'#FFC93C',.6],['🐾',5,30,18,'#FFC93C',.55]];
+itens.forEach(function(it,i){
+  var e=document.createElement('i');
+  e.innerHTML='<b style="animation-delay:'+(-i*.9)+'s">'+it[0]+'</b>';
+  e.style.cssText='left:'+it[1]+'%;font-size:'+it[3]+'px;color:'+it[4]+';opacity:'+it[5];
+  e._b=it[2];e._v=.12+(i%4)*.07;
+  box.appendChild(e);
+});
+document.body.appendChild(box);
+var els=box.children,tick=false;
+function upd(){
+  tick=false;var vh=window.innerHeight,y=window.scrollY||0;
+  for(var i=0;i<els.length;i++){
+    var e=els[i],span=vh+120;
+    var p=((e._b/100)*vh-y*e._v)%span;if(p<0)p+=span;
+    els[i].style.transform='translateY('+(p-60)+'px)';
+  }
+}
+window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
+window.addEventListener('resize',upd);upd();
+})();
+</script>
 </body>
 </html>
