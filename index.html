@@ -328,8 +328,8 @@ if('IntersectionObserver' in window){
 .imgwrap{container-type:inline-size}
 a.pconh{position:absolute;z-index:4;display:flex;align-items:center;justify-content:center;gap:.35em;background:linear-gradient(#FFD84D,#FFB800);color:#5B1A6E;font:800 .95cqw/1 system-ui,Arial,sans-serif;border-radius:999px;box-shadow:0 0 0 2px #fff inset,0 4px 10px rgba(91,42,134,.25);text-decoration:none;white-space:nowrap;transition:transform .25s cubic-bezier(.3,1.6,.5,1),filter .25s,box-shadow .25s}
 a.pconh:hover{transform:scale(1.08) translateY(-2px);filter:brightness(1.06);box-shadow:0 0 0 2px #fff inset,0 8px 18px rgba(91,42,134,.4)}
-a.pconh.dsk{height:5.4%}a.pconh.mob{height:5.6%;font-size:3cqw}
-.pslot.mob.hasbtn img{max-height:52%;transform:translateY(-14%)}
+a.pconh.dsk{height:5.4%}a.pconh.mob{height:6.6%;font-size:2.9cqw;line-height:1.05;white-space:normal;text-align:center;padding:0 1%}
+.pslot.mob.hasbtn img{max-height:60%;transform:translateY(-20%)}
 .ppage{position:fixed;inset:0;z-index:60;background:#DDF1FF;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .ppage[hidden]{display:none}
 .ppbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:10px 16px;background:#5B1A6E;color:#fff;font:700 15px system-ui,Arial,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)}
@@ -363,7 +363,7 @@ PARCEIROS.forEach(function(p,i){
   var a=document.createElement('a');a.className='pconh dsk';a.href='#parceiro-'+p.pagina;a.textContent='Conheça o parceiro';a.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
   a.style.cssText='left:'+(D[i]+1.85)+'%;top:78.4%;width:13.6%';wrap.appendChild(a);
   var b=document.createElement('a');b.className='pconh mob';b.href='#parceiro-'+p.pagina;b.textContent='Conheça o parceiro';b.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
-  b.style.cssText='left:'+(M[i][0]+2.4)+'%;top:'+(M[i][1]+14.58-6.4)+'%;width:'+(MW[i]-4.8)+'%';wrap.appendChild(b);
+  b.style.cssText='left:'+(M[i][0]+2.4)+'%;top:'+(M[i][1]+14.58-7.4)+'%;width:'+(MW[i]-4.8)+'%';wrap.appendChild(b);
   var sm=document.getElementById('ps'+i+'m');if(sm)sm.classList.add('hasbtn');
 });
 var pg=document.getElementById('pg-4patas'),last=0;
