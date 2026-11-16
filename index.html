@@ -214,8 +214,8 @@ var HERO_POSTER = "";
 // Itens vazios mantêm o espaço reservado do layout.
 var MSG_PARCEIRO = "Olá, eu vim atrás do site da Kira Padaria Pet";
 var PARCEIROS = [
-  {nome:"4 Patas", pagina:"4patas", logo:"assets/parceiro-4patas.png", instagram:"https://www.instagram.com/4patasdaycareeauautel/", whatsapp:"5516991440303"},
-  {nome:"Ana Beatriz Nascimento", pagina:"anab", logo:"assets/parceiro-anab.png", instagram:"https://www.instagram.com/anab.gastronutrivet/", whatsapp:"5516991668896"},
+  {nome:"4 Patas", pagina:"4patas", url:"/parceiro-4-patas", logo:"assets/parceiro-4patas.png", instagram:"https://www.instagram.com/4patasdaycareeauautel/", whatsapp:"5516991440303"},
+  {nome:"Ana Beatriz Nascimento", pagina:"anab", url:"/parceiro-dra-ana-beatriz", logo:"assets/parceiro-anab.png", instagram:"https://www.instagram.com/anab.gastronutrivet/", whatsapp:"5516991668896"},
   {nome:"", logo:"", instagram:"", whatsapp:""},
   {nome:"", logo:"", instagram:"", whatsapp:""},
   {nome:"", logo:"", instagram:"", whatsapp:""}
@@ -385,9 +385,9 @@ var D=[3.1,22.25,41.4,60.55,79.7],M=[[4.40,47.43],[35.99,47.43],[66.67,47.43],[1
 var MW=[28.75,28.02,28.75,28.94,29.03];
 PARCEIROS.forEach(function(p,i){
   if(!p.pagina||!wrap)return;
-  var a=document.createElement('a');a.className='pconh dsk';a.href='#parceiro-'+p.pagina;a.textContent='Conheça o parceiro';a.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
+  var a=document.createElement('a');a.className='pconh dsk';a.href=p.url||('#parceiro-'+p.pagina);a.textContent='Conheça o parceiro';a.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
   a.style.cssText='left:'+(D[i]+1.85)+'%;top:78.4%;width:13.6%';wrap.appendChild(a);
-  var b=document.createElement('a');b.className='pconh mob';b.href='#parceiro-'+p.pagina;b.textContent='Conheça o parceiro';b.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
+  var b=document.createElement('a');b.className='pconh mob';b.href=p.url||('#parceiro-'+p.pagina);b.textContent='Conheça o parceiro';b.setAttribute('aria-label','Conheça o parceiro '+(p.nome||''));
   b.style.cssText='left:'+(M[i][0]+2.4)+'%;top:'+(M[i][1]+14.58-7.4)+'%;width:'+(MW[i]-4.8)+'%';wrap.appendChild(b);
   var sm=document.getElementById('ps'+i+'m');if(sm)sm.classList.add('hasbtn');
 });
