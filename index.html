@@ -421,17 +421,18 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur){locati
 <a class="fwa" id="fwa" href="#" target="_blank" rel="noopener">💬 Fazer pedido</a>
 <script>
 (function(){
-var NUM="5516991295907",btn=document.getElementById("fwa"),car=document.getElementById("car"),slides=[].slice.call(car.children).filter(function(e){return e.classList.contains("slide")}),dots=document.getElementById("car-d"),cur=0,auto=true,vis={};
+var NUM="5516991295907",btn=document.getElementById("fwa"),car=document.getElementById("car"),slides=[].slice.call(car.children).filter(function(e){return e.classList.contains("slide")}),dots=document.getElementById("car-d"),cur=0,auto=true,vis={},lastI=0,seen=true;
 function link(m){return "https://wa.me/"+NUM+"?text="+encodeURIComponent(m)}
-slides.forEach(function(_,i){var d=document.createElement("i");d.onclick=function(){auto=false;go(i)};dots.appendChild(d)});
+slides.forEach(function(_,i){var d=document.createElement("i");d.onclick=function(){lastI=Date.now();go(i)};dots.appendChild(d)});
 function setH(){var s=slides[cur];car.style.height=s.getBoundingClientRect().height+"px"}
 function go(i){cur=(i+slides.length)%slides.length;car.scrollTo({left:slides[cur].offsetLeft,behavior:"smooth"});upd()}
 function upd(){[].forEach.call(dots.children,function(d,i){d.className=i==cur?"on":""});setH();refresh()}
 car.addEventListener("scroll",function(){var i=Math.round(car.scrollLeft/car.clientWidth);if(i!=cur&&i>=0&&i<slides.length){cur=i;upd()}},{passive:true});
-["touchstart","mousedown","wheel"].forEach(function(e){car.addEventListener(e,function(){auto=false},{passive:true})});
-document.querySelector(".car-p").onclick=function(){auto=false;go(cur-1)};document.querySelector(".car-n").onclick=function(){auto=false;go(cur+1)};
+["touchstart","mousedown"].forEach(function(e){car.addEventListener(e,function(){lastI=Date.now()},{passive:true})});
+document.querySelector(".car-p").onclick=function(){lastI=Date.now();go(cur-1)};document.querySelector(".car-n").onclick=function(){lastI=Date.now();go(cur+1)};
 window.addEventListener("resize",setH);slides.forEach(function(s){var im=s.querySelector("img");if(im)im.addEventListener("load",setH)});
-setInterval(function(){if(auto&&vis.topo2)go(cur+1)},5000);
+new IntersectionObserver(function(es){seen=es[0].isIntersecting},{threshold:0.05}).observe(document.getElementById("topo2"));
+setInterval(function(){if(seen&&!document.hidden&&Date.now()-lastI>4000)go(cur+1)},5000);
 function refresh(){var m=null;if(vis.topo2)m=slides[cur].getAttribute("data-msg");else if(vis.cardapio)m=document.getElementById("cardapio").getAttribute("data-msg");
  if(m){btn.href=link(m);btn.classList.add("show")}else btn.classList.remove("show")}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting});refresh()},{threshold:0.35});
